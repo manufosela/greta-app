@@ -1,6 +1,6 @@
 # PROMPT 2 — Discovery
 
-> Antes de leer este prompt, carga `../context-greta.md` (Partes 1 y 2 del documento maestro) **y** `../outputs/GRETA-research.md` (output de la fase Research). Este prompt asume ese contexto.
+> Antes de leer este prompt, carga `../context-greta.md` (Partes 1 y 2 del documento maestro) **y** `../../docs/research.md` (output de la fase Research). Este prompt asume ese contexto.
 
 ---
 
@@ -81,4 +81,4 @@ OUTPUT ESPERADO:
 
 ---
 
-**Output destination:** `outputs/GRETA-discovery.md` (en la raíz de greta-app/).
+**Output destination:** `docs/discovery.md` (en la raíz de greta-app/).

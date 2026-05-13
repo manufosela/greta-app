@@ -1,6 +1,6 @@
 # PROMPT 3 — Architecture
 
-> Antes de leer este prompt, carga `../context-greta.md`, `../outputs/GRETA-research.md` y `../outputs/GRETA-discovery.md`. Este prompt asume todo ese contexto.
+> Antes de leer este prompt, carga `../context-greta.md`, `../../docs/research.md` y `../../docs/discovery.md`. Este prompt asume todo ese contexto.
 
 ---
 
@@ -90,4 +90,4 @@ OUTPUT ESPERADO:
 
 ---
 
-**Output destination:** `outputs/GRETA-architecture.md` (en la raíz de greta-app/).
+**Output destination:** `docs/architecture.md` (en la raíz de greta-app/).

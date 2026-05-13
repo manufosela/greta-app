@@ -1,6 +1,6 @@
 # PROMPT 4 — Plan de Historias de Usuario
 
-> Antes de leer este prompt, carga `../context-greta.md`, `../outputs/GRETA-research.md`, `../outputs/GRETA-discovery.md` y `../outputs/GRETA-architecture.md`. Este prompt asume todo ese contexto.
+> Antes de leer este prompt, carga `../context-greta.md`, `../../docs/research.md`, `../../docs/discovery.md` y `../../docs/architecture.md`. Este prompt asume todo ese contexto.
 
 ---
 
@@ -67,4 +67,4 @@ OUTPUT ESPERADO:
 
 ---
 
-**Output destination:** `outputs/GRETA-HUs.md` (en la raíz de greta-app/).
+**Output destination:** `docs/HUs.md` (en la raíz de greta-app/).
