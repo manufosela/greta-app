@@ -1,7 +1,10 @@
-# --- Karajan Code ---
+# --- Karajan Code (regenerable, never committed) ---
 .kj/
 .agent/
 .scannerwork/
+.claude/
+.karajan/
+.reviews/
 
 # --- Otros agentes ---
 .qodo/
