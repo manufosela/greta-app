@@ -11,12 +11,13 @@ Lee este documento completo antes de generar nada. Contiene el contexto del fram
 **Tu trabajo es descomponer el SaaS GRETA en HUs atómicas y ejecutables individualmente con `kj run`.** No estás generando documentación intermedia (research, discovery, architecture). Estás generando las HUs reales del producto, cada una una unidad de trabajo concreta que un coder puede implementar.
 
 **Reglas duras:**
-1. Cada HU es atómica: un coder la implementa en una pasada, con tests verificables. Si una pieza es demasiado grande para una HU, pártela en varias HUs encadenadas con `blocked_by`.
-2. ID con prefijo de épica: `[AUTH-001]`, `[PROFILE-002]`, `[ASSESS-003]`, `[AI-004]`, `[IMPACT-005]`, `[GUARD-006]`, `[NETWORK-007]`, etc.
-3. Idioma de las HUs: **español**. Historia "como [actor], quiero [acción], para [valor]".
-4. Acceptance tests EJECUTABLES en cada HU (shell o gherkin). Sin tests, la HU no es ejecutable.
-5. Dependencias entre HUs expresadas en `blocked_by`. Si una HU depende de otra, declárala.
-6. **No generes una lista de "docs a producir"**. Genera HUs del producto: una HU que crea un Cloud Function, una HU que añade un campo a Firestore, una HU que monta un componente Lit, etc.
+1. La PRIMERA HU del plan DEBE ser la **HU-0 OBLIGATORIA — Preflight de entorno** (descrita más abajo). Todas las demás HUs DEBEN tener `blocked_by` apuntando a esa HU-0.
+2. Cada HU es atómica: un coder la implementa en una pasada, con tests verificables. Si una pieza es demasiado grande para una HU, pártela en varias HUs encadenadas con `blocked_by`.
+3. ID con prefijo de épica: `[AUTH-001]`, `[PROFILE-002]`, `[ASSESS-003]`, `[AI-004]`, `[IMPACT-005]`, `[GUARD-006]`, `[NETWORK-007]`, etc.
+4. Idioma de las HUs: **español**. Historia "como [actor], quiero [acción], para [valor]".
+5. Acceptance tests EJECUTABLES en cada HU (shell o gherkin). Sin tests, la HU no es ejecutable.
+6. Dependencias entre HUs expresadas en `blocked_by`. Si una HU depende de otra, declárala.
+7. **No generes una lista de "docs a producir"**. Genera HUs del producto: una HU que crea un Cloud Function, una HU que añade un campo a Firestore, una HU que monta un componente Lit, etc.
 
 ---
 
@@ -194,6 +195,25 @@ La IA protege el espíritu del framework en todos los puntos de entrada donde pu
 10. La IA genera mapa de percepción y divergencias con autodiagnóstico
 11. Opcionalmente conecta su instancia con la de su líder o peers → visibilidad compartida agregada
 12. Las visualizaciones se actualizan en tiempo real
+
+---
+
+## HU-0 OBLIGATORIA — Preflight de entorno
+
+La PRIMERA HU del plan DEBE ser un preflight de comprobación del entorno con id `[PREFLIGHT-000]` y título "Verificar entorno de desarrollo listo". Sin dependencias (`blocked_by: []`), pero **TODAS las demás HUs del plan DEBEN tener `blocked_by` incluyendo el id de esta HU-0** (además de sus dependencias funcionales propias).
+
+Criterios de aceptación (acceptance_tests EJECUTABLES, tipo shell):
+- `node --version` devuelve >= v20.10
+- `npm install` (o el comando del package manager del proyecto) corre sin errores
+- `npm run build` (si existe el script) termina con código 0
+- `npm test` (si existe el script) termina con código 0 y sin tests fallidos
+- `npm run lint` (si existe el script) termina con código 0
+- `git status --porcelain` no muestra cambios sin commitear
+- `firebase projects:list` lista al menos un proyecto Firebase accesible (el del SaaS GRETA, sea el que decida el planner en infraestructura)
+- `gcloud auth list` muestra al menos una cuenta autenticada
+- El repo tiene rama `main` y está sincronizado con origen
+
+Razón: sin esta HU bloqueante, las demás corren sobre un entorno que puede estar roto y se desperdician tokens en fallos espurios. Es la única HU del plan que se ejecuta en serie antes que todas las demás.
 
 ---
 
