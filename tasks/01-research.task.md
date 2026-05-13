@@ -234,4 +234,4 @@ OUTPUT ESPERADO:
 
 ---
 
-**Output destination:** `outputs/GRETA-research.md` (en la raíz de greta-app/).
+**Output destination:** `docs/research.md` (en la raíz de greta-app/).
